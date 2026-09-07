@@ -18,7 +18,7 @@ description: 智能算法专栏的依赖关系、学习顺序、内容边界和�
 <ClientOnly>
   <MermaidDiagram
     title="智能算法的学习依赖"
-    :code="`flowchart LR\n A[0 模型计算基础] --> B[1 机器学习与泛化评估]\n A --> C[2 神经网络]\n B --> C\n C --> D[3 Transformer]\n D --> E[4 基础模型]\n E --> F[5 数据与训练]\n F --> G[6 推理与评测]\n G --> H[7 RAG 与 Agent]\n L[实验与案例] -.持续验证.-> B\n L -.持续验证.-> D\n L -.持续验证.-> G`"
+    :code="`flowchart LR\n A[0 模型计算基础] --> B[1 机器学习、树模型与泛化评估]\n A --> C[2 神经网络]\n B --> C\n C --> D[3 Transformer]\n D --> E[4 基础模型]\n E --> F[5 数据与训练]\n F --> G[6 推理与评测]\n G --> H[7 RAG 与 Agent]\n L[实验与案例] -.持续验证.-> B\n L -.持续验证.-> D\n L -.持续验证.-> G`"
   />
 </ClientOnly>
 
@@ -28,7 +28,7 @@ description: 智能算法专栏的依赖关系、学习顺序、内容边界和�
 2. [张量的轴与形状](/ai/foundations/tensor-shapes)：把矩阵规则推广到 batch、token、head。
 3. [最小训练循环](/ai/foundations/optimization-loop)：连接损失、梯度和参数更新。
 4. [模型是真的学会，还是偷看了答案？](/ai/machine-learning/problem-and-evaluation)：先学会识别记忆、泄漏和虚假高分。
-5. [机器学习基线实验](/ai/machine-learning/baseline-lab)：用简单模型暴露数据和指标问题。
+5. [机器学习基线实验](/ai/machine-learning/baseline-lab)：用简单模型暴露数据和指标问题；接着完成下方第 1 章树模型路线，再进入神经网络。
 6. [MLP 如何学习表示](/ai/deep-learning/mlp-representation)：从线性层进入非线性组合。
 7. [反向传播](/ai/deep-learning/backpropagation)：沿计算图追踪梯度。
 8. [QKV 是一次可学习检索](/ai/transformers/qkv-retrieval)：理解 attention 的语义。
@@ -71,12 +71,27 @@ description: 智能算法专栏的依赖关系、学习顺序、内容边界和�
 45. [可靠性与多 Agent](/ai/agents-and-systems/reliability-and-multi-agent)：控制重试、审批、预算和合并责任。
 46. [Agent 状态机实验](/ai/agents-and-systems/agent-loop-lab)：运行成功、超时与写入审批路径。
 
+## 第 1 章树模型路线
+
+完成机器学习基线实验后，按以下顺序学习；它不依赖神经网络章节。下面全部为 `learnable`，实现与原生库对照由构建前脚本验证；独立实现需读者完成实验。
+
+1. [决策树如何从数据中学出规则](/ai/machine-learning/decision-tree)：手算阈值、叶子值和误差下降。
+2. [从零实现 CART 回归树](/ai/machine-learning/cart-lab)：实现数值切分、递归建树与预测。
+3. [梯度提升为什么逐轮拟合修正量](/ai/machine-learning/gradient-boosting)：手算两轮修正与累计预测。
+4. [从零实现平方损失 GBDT](/ai/machine-learning/gbdt-lab)：复用 CART 实现最小提升循环。
+5. [LightGBM 如何计算叶子值与分裂增益](/ai/machine-learning/lightgbm-objective)：推导梯度、Hessian、正则与增益。
+6. [LightGBM 如何用直方图生长一棵树](/ai/machine-learning/lightgbm-tree-learning)：解释分箱、叶子选择、缺失与类别路由。
+7. [训练、早停与重载一个 LightGBM 模型](/ai/machine-learning/lightgbm-lab)：运行固定环境并验证重载一致。
+8. [从 Python 调用追踪到一次分裂](/ai/machine-learning/lightgbm-source)：在固定版本源码中定位各步职责。
+
+最后完成[第 1 章复习](/ai/machine-learning/review)，公式与参数查[速查页](/ai/machine-learning/tree-reference)。量化具体应用另行建设。
+
 ## 章节边界
 
 | 章 | 核心问题 | 不在本章解决 |
 | --- | --- | --- |
 | 0 | 数字如何表示对象、参与计算并被优化 | 特定网络为何适合特定任务 |
-| 1 | 什么证据说明模型在未知数据上有效 | 深层网络内部怎样学习表示 |
+| 1 | 树与提升模型怎样学习，以及什么证据说明泛化有效 | 深层网络内部怎样学习表示 |
 | 2 | 多层可微变换怎样形成表示 | token 间全局通信的具体机制 |
 | 3 | 序列位置怎样选择并汇总其他位置 | 大规模数据治理与产品可靠性 |
 | 4 | 预训练目标怎样形成可复用生成能力 | 训练流水线的具体治理 |

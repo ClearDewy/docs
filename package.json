@@ -10,7 +10,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "check:python": "python3 examples/python/quickstart.py && python3 examples/python/ai_core_examples.py",
+    "check:python": "python3 examples/python/quickstart.py && python3 examples/python/ai_core_examples.py && python3 examples/python/tree_boosting.py",
+    "check:trees": "uv run --no-project --python 3.12 --with-requirements examples/python/requirements-trees.txt python examples/python/lightgbm_lab.py",
     "check:content": "node scripts/check-content.mjs",
     "check:learning": "python3 scripts/tests/learning-examples.py && node scripts/tests/rtos.mjs && python3 examples/python/rag_trace.py",
     "check:tiny": "node scripts/check-tiny.mjs"

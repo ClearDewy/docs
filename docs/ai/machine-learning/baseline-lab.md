@@ -5,7 +5,7 @@ updated: 2026-09-04
 type: lab
 status: learnable
 track: ai
-prerequisites: [机器学习与泛化评估, Python 基础]
+prerequisites: [/ai/machine-learning/problem-and-evaluation, Python 基础]
 outcomes: [建立常数基线, 比较训练与测试误差, 识别可疑高分]
 estimated: 40 分钟
 description: 用固定的一维数据手写常数基线和线性回归，观察泛化与异常样本。
@@ -49,4 +49,4 @@ Python 3.10+。训练数据：`x=[1,2,3,4]`、`y=[3,5,7,9]`；测试数据：`x=
 - 只看平均 MAE 会漏掉第二个样本的集中失败：必须打印逐样本误差。
 - 此固定例子不是房价模型，只验证评测思路。
 
-脚本不产生文件，无需清理。保存 Python 版本、代码与输出；完成后做[第 1 章复习](/ai/machine-learning/review)。
+脚本不产生文件，无需清理。保存 Python 版本、代码与输出；下一步学习[决策树如何从数据中学出规则](/ai/machine-learning/decision-tree)，把一条线性候选扩展为可以学习分区规则的模型。

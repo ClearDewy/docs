@@ -22,7 +22,7 @@ description: 从数学表示、学习与神经网络出发，逐步进入 Transf
 ### 第一次系统学习
 
 ```text
-0 模型计算基础 → 1 机器学习与泛化评估 → 2 神经网络 → 3 注意力与 Transformer
+0 模型计算基础 → 1 机器学习、树模型与泛化评估 → 2 神经网络 → 3 注意力与 Transformer
                                       ↓
                             4 基础模型 → 5 训练 → 6 评测 → 7 智能系统
 ```
@@ -38,7 +38,7 @@ description: 从数学表示、学习与神经网络出发，逐步进入 Transf
 | 章 | 入口 | 当前状态 | 学完应能做到 |
 | ---: | --- | --- | --- |
 | 0 | [模型计算与优化基础](/ai/foundations) | 可学习 | 手算矩阵乘法，追踪张量轴，解释梯度更新 |
-| 1 | [机器学习与泛化评估](/ai/machine-learning) | 可学习 | 识别记忆训练题、偷看答案和虚假高分 |
+| 1 | [机器学习、树模型与泛化评估](/ai/machine-learning) | 可学习 | 实现 CART/GBDT、解释 LightGBM，并审查泛化证据 |
 | 2 | [神经网络与表示学习](/ai/deep-learning) | 可学习 | 手写两层网络并解释反向传播 |
 | 3 | [序列、注意力与 Transformer](/ai/transformers) | 可学习 | 从 QKV 推导完整 attention 与多头 shape |
 | 4 | [基础模型与生成系统](/ai/foundation-models) | 可学习 | 通过 tiny Transformer 跑通训练/加载/生成，再比较扩展架构 |

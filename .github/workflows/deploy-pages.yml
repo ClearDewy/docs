@@ -49,6 +49,9 @@ jobs:
       - name: Verify tiny Transformer training and recovery
         run: npm run check:tiny
 
+      - name: Verify CART and LightGBM training and recovery
+        run: npm run check:trees
+
       - name: Build Pico teaching firmware
         run: |
           sudo apt-get update

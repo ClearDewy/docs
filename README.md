@@ -29,7 +29,7 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 
 ```text
 模型计算与优化基础
-  → 机器学习与泛化评估
+  → 机器学习、树模型与泛化评估
   → 神经网络与表示学习
   → 序列、注意力与 Transformer
   → 基础模型与生成模型
@@ -246,6 +246,7 @@ npm run docs:dev
 npm run check:python
 npm run check:content
 npm run check:learning
+npm run check:trees # 固定依赖的 CART / GBDT / LightGBM 对照，需要 uv
 npm run check:tiny # 自动选择本机依赖组，计算固定 CPU
 npm run docs:build
 npm run docs:preview
