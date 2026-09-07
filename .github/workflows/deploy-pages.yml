@@ -27,44 +27,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
       - name: Install dependencies
         run: npm ci
-
-      - name: Verify Python examples
-        run: npm run check:python
-
-      - name: Verify learning variants
-        run: npm run check:learning
-
-      - name: Install locked CPU learning environment
-        run: |
-          python -m pip install uv==0.12.8
-          uv sync --extra cpu --frozen
-
-      - name: Verify tiny Transformer training and recovery
-        run: npm run check:tiny
-
-      - name: Verify CART and LightGBM training and recovery
-        run: npm run check:trees
-
-      - name: Build Pico teaching firmware
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
-          mkdir -p .pico-tools
-          git clone --depth 1 --branch 2.1.1 https://github.com/raspberrypi/pico-sdk.git .pico-tools/pico-sdk
-          git -C .pico-tools/pico-sdk submodule update --init lib/tinyusb
-          cmake -S examples/embedded/pico-blink -B examples/embedded/pico-blink/build -DPICO_BOARD=pico -DPICO_SDK_PATH="$PWD/.pico-tools/pico-sdk" -DCMAKE_BUILD_TYPE=Debug
-          cmake --build examples/embedded/pico-blink/build --parallel 2
-          test -s examples/embedded/pico-blink/build/learning_blink.uf2
-
-      - name: Verify content contracts
-        run: npm run check:content
 
       - name: Build site
         run: npm run docs:build

@@ -24,19 +24,17 @@ description: 用固定合成数据完成数据集构建、验证早停、测试�
 
 ## 1. 固定环境
 
-Python 3.12、LightGBM 4.6.0、NumPy 2.2.6、SciPy 1.15.3、scikit-learn 1.6.1；完整依赖固定在：
-
-<<< @/../examples/python/requirements-trees.txt
+Python 3.12、LightGBM 4.6.0、NumPy 2.2.6、SciPy 1.15.3、scikit-learn 1.6.1。依赖统一在根目录 `pyproject.toml` 的 `trees` 可选依赖组声明，由根目录 `uv.lock` 锁定，使用根目录 `.venv`。
 
 在仓库根目录执行：
 
 ```bash
-uv run --no-project --python 3.12 --with-requirements examples/python/requirements-trees.txt python examples/python/lightgbm_lab.py
+uv run --extra trees --frozen python examples/python/lightgbm_lab.py
 ```
 
 首次运行需要下载依赖；运行本身只使用 CPU、单线程，不访问外部数据。macOS 如缺少 `libomp.dylib`，安装 `brew install libomp` 后重试，原理是补齐原生库依赖的 OpenMP 运行时。Windows/Linux 的安装差异查 [官方安装说明](https://lightgbm.readthedocs.io/en/v4.6.0/Installation-Guide.html)。
 
-也可以运行 `npm run check:trees`，它调用同一脚本和同一依赖文件。此项已接入站点构建前的 CI 检查。
+也可以运行 `npm run check:trees`，它通过根目录的 `trees` 依赖组调用同一脚本，在本地按需验证。
 
 ## 2. 先做小样本对照
 

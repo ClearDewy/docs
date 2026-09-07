@@ -100,7 +100,7 @@ CART split=2.5, gain(SSE)=4.0, prediction=[1.0, 1.0, 3.0, 3.0]
 安装好 [uv](https://docs.astral.sh/uv/getting-started/installation/) 后，在仓库根目录运行：
 
 ```bash
-uv run --no-project --python 3.12 --with-requirements examples/python/requirements-trees.txt python examples/python/lightgbm_lab.py
+uv run --extra trees --frozen python examples/python/lightgbm_lab.py
 ```
 
 此命令使用 uv 管理的隔离环境，不修改仓库已有的 PyTorch 依赖环境。首次下载需要网络；后续执行使用缓存。macOS 如果报告缺少 `libomp`，按 [LightGBM 安装说明](https://lightgbm.readthedocs.io/en/v4.6.0/Installation-Guide.html#macos)安装 OpenMP 运行库后重试。

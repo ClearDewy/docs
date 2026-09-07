@@ -99,7 +99,7 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 
 默认读者具备数学与线性代数基础，不从基础算术开始。首次学习模型或硬件时，需要补齐对象来源、编程工具和完整操作路径：Python 环境归入系统工程；C/交叉编译与固定 Pico 实操归入 MCU 章节；tiny Transformer 串接 LLM 原理与项目案例。
 
-概念自测、模拟实验、独立实现、真实硬件实测分别记录。目录中的 `learnable` 不能代替真实任务验收，未连接硬件的教程不得写成已完成板级实测。页面中可运行源码优先直接引用 `examples/`，CI 对相同实现运行基线与课程要求的变式，避免网页和测试各维护一份答案。
+概念自测、模拟实验、独立实现、真实硬件实测分别记录。目录中的 `learnable` 不能代替真实任务验收，未连接硬件的教程不得写成已完成板级实测。页面中可运行源码优先直接引用 `examples/`，本地检查对相同实现运行基线与课程要求的变式，避免网页和测试各维护一份答案。
 
 ## 内容组织规则
 
@@ -156,7 +156,7 @@ docs/
 ├── public/              # 静态资源
 └── .vitepress/          # VitePress 与 Teek 配置
     └── theme/components/interactive/ # 可复用交互组件
-examples/                # 可由 CI 执行的完整示例
+examples/                # 可在本地运行的完整示例
 ```
 
 当某个专栏内容增多时，可以在专栏内按知识地图增加二级目录，但 URL 应保持语义清晰，避免按日期或临时项目名建立长期目录。
@@ -171,11 +171,11 @@ examples/                # 可由 CI 执行的完整示例
 
 ## 可运行示例
 
-- `examples/` 中的脚本必须在 GitHub Actions 构建前执行。
+- 修改 `examples/` 中的脚本或相关课程时，在本地按需执行对应检查；站点发布只构建前端文档。
 - 关键示例应确定性运行，固定外部依赖，不依赖随机网络响应或私密凭据。
 - 文章可以使用全局组件 `<PythonPlayground />` 在浏览器内运行轻量 Python 代码。
 - Pyodide 只适合演示、标准库练习和轻量计算；系统服务、驱动、私有数据和长任务应使用仓库脚本或独立环境验证。
-- 文章展示的输出应与仓库中被 CI 验证的脚本保持一致。
+- 文章展示的输出应与仓库中本地验证的脚本保持一致。
 
 ## 交互式知识组件
 
@@ -240,20 +240,29 @@ npm ci
 npm run docs:dev
 ```
 
-发布前验证：
+本地构建和预览：
 
 ```bash
-npm run check:python
-npm run check:content
-npm run check:learning
-npm run check:trees # 固定依赖的 CART / GBDT / LightGBM 对照，需要 uv
-npm run check:tiny # 自动选择本机依赖组，计算固定 CPU
 npm run docs:build
 npm run docs:preview
 ```
+
+Python 示例统一使用根目录的 `pyproject.toml`、`uv.lock` 和 `.venv`，从仓库根目录运行 `uv`。标准库示例使用 `uv run --frozen python <脚本路径>`；LightGBM 使用 `--extra trees`；PyTorch 按平台选择 `--extra cpu`、`--extra mps` 或 `--extra cu130`。只开发文档站点时不需要安装 Python 环境。
+
+修改对应内容后按需运行本地检查：
+
+```bash
+npm run check:content  # 文章结构与内容约定
+npm run check:python  # 标准库示例，需要 uv
+npm run check:learning # 课程变式，需要 uv
+npm run check:trees   # 根目录 trees 依赖组
+npm run check:tiny    # 自动选择本机 PyTorch 依赖组，计算固定 CPU
+```
+
+这些检查及 Pico 固件编译不作为 GitHub Pages 发布门槛；硬件实验按教程在本地验证。
 
 日常写作和新增文章始终使用 `npm run docs:dev`。`docs:preview` 只读取启动时已有的生产构建快照；如果它运行期间再次执行 `docs:build`，必须停止并重新启动预览进程，否则旧路由表和新 `dist` 会混在一起，表现为文章列表刷新后才出现或新文章 404。
 
 `docs/.vitepress/dist` 已从开发服务器监听范围中排除，因此开发服务运行时执行生产构建不会触发构建产物的 HMR 风暴。检查最终构建时应先完成 `docs:build`，再启动一次全新的 `docs:preview`，验证结束后回到 `docs:dev`。
 
-GitHub Actions 从 `master` 构建并发布站点。GitHub Pages 的 Source 必须保持为 **GitHub Actions**，不能切换回 `gh-pages` 分支发布。
+GitHub Actions 从 `master` 安装前端依赖、构建文档站点并发布到 Pages，不安装 Python、训练模型或编译固件。GitHub Pages 的 Source 必须保持为 **GitHub Actions**，不能切换回 `gh-pages` 分支发布。

@@ -53,7 +53,7 @@ features:
     linkText: 查看能力
   - icon: ⌘
     title: 可运行与可复现
-    details: 轻量 Python 可在浏览器执行，关键示例则由 CI 在发布前验证。
+    details: 轻量 Python 可在浏览器执行，完整示例可在本地通过统一 Python 环境验证。
     link: /systems/reproducible-examples
     linkText: 查看方法
 ---
