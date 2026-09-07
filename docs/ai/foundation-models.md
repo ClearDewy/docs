@@ -1,7 +1,7 @@
 ---
 title: 4. 基础模型与生成系统
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: overview
 status: learnable
 track: ai
@@ -58,7 +58,7 @@ description: 从训练样本出发组装、训练和推理完整语言模型，�
 
 ## 唯一学习顺序
 
-不要按侧边栏随意跳读。零基础读者按下表顺序完成，每页末尾的“下一步”也与此一致。
+不要按侧边栏随意跳读。具备数学与线性代数基础、首次学习模型的读者按下表顺序完成，每页末尾的“下一步”也与此一致。
 
 ### 第一轮：组装并运行语言模型
 
@@ -74,19 +74,20 @@ description: 从训练样本出发组装、训练和推理完整语言模型，�
 | 8 | [Prefill、Decode 与 KV Cache 怎样工作](/ai/foundation-models/prefill-kv-cache) | 增量推理如何复用历史中间结果 | 能解释缓存内容与时间—显存交换 |
 | 9 | [采样参数怎样改变生成结果](/ai/foundation-models/sampling) | 最后位置分布如何选出 token | 能区分 temperature、top-k、top-p |
 | 10 | [训练一个最小 next-token 模型](/ai/foundation-models/language-model-lab) | 亲手观察 loss 与生成变化 | 运行基线并完成三组反事实实验 |
+| 11 | [CPU 上的 tiny Transformer](/ai/foundation-models/tiny-transformer-lab) | 把完整 Decoder 真正训练、保存与加载 | 通过因果性、更新、重载和继续训练检查 |
 
-完成第 10 页后，已经建立“语言模型怎样工作”的核心闭环。
+完成第 10 页可记录“概率模型实验通过”；完成第 11 页并独立修复故障，才记录“Transformer 实现通过”。本地工具操作见[Python 项目准备](/systems/python-project-workflow)。
 
 ### 第二轮：理解基础模型扩展
 
 | 顺序 | 页面 | 本页只解决 | 完成证据 |
 | ---: | --- | --- | --- |
-| 11 | [BERT、T5 与 GPT 为什么是三种结构](/ai/foundation-models/model-families) | 三类 Transformer 的信息流与目标 | 能为三类任务选择架构并说明理由 |
-| 12 | [Scaling 与 MoE 怎样扩展模型容量](/ai/foundation-models/scaling-and-moe) | 参数、数据、计算与稀疏专家的关系 | 能区分 total 与 active parameters |
-| 13 | [多模态与扩散模型怎样连接语言模型](/ai/foundation-models/multimodal-and-diffusion) | 视觉如何进入语言模型、扩散如何生成图像 | 能画出两条不同生成闭环 |
-| 14 | [模型回答中的能力来自哪里](/ai/foundation-models/capability-boundaries) | 参数、上下文、检索与工具怎样区分 | 能为回答建立信息来源记录 |
-| 15 | [基础模型公式与术语速查](/ai/foundation-models/reference) | 统一查询 shape、资源和推理术语 | 能独立定位一个 shape 或资源公式 |
-| 16 | [第 4 章复习与验收](/ai/foundation-models/review) | 判断是否真正掌握整章 | 完成客观题、推导、调试和结构说明 |
+| 12 | [BERT、T5 与 GPT 为什么是三种结构](/ai/foundation-models/model-families) | 三类 Transformer 的信息流与目标 | 能为三类任务选择架构并说明理由 |
+| 13 | [Scaling 与 MoE 怎样扩展模型容量](/ai/foundation-models/scaling-and-moe) | 参数、数据、计算与稀疏专家的关系 | 能区分 total 与 active parameters |
+| 14 | [多模态与扩散模型怎样连接语言模型](/ai/foundation-models/multimodal-and-diffusion) | 视觉如何进入语言模型、扩散如何生成图像 | 能画出两条不同生成闭环 |
+| 15 | [模型回答中的能力来自哪里](/ai/foundation-models/capability-boundaries) | 参数、上下文、检索与工具怎样区分 | 能为回答建立信息来源记录 |
+| 16 | [基础模型公式与术语速查](/ai/foundation-models/reference) | 统一查询 shape、资源和推理术语 | 能独立定位一个 shape 或资源公式 |
+| 17 | [第 4 章复习与验收](/ai/foundation-models/review) | 判断是否真正掌握整章 | 完成客观题、推导、调试和结构说明 |
 
 第二轮不是独立支线，它建立在第一轮的完整语言模型上。扩展模型出现的新结构会明确指出复用了什么、改变了什么。
 
@@ -111,7 +112,7 @@ description: 从训练样本出发组装、训练和推理完整语言模型，�
 - 指令微调、偏好优化、安全训练：进入第 5 章；
 - 服务端连续批处理、张量并行、分页缓存和量化内核：进入[推理、评测与安全](/ai/inference-evaluation-safety)；
 - RAG、工具调用与 Agent 状态机：进入[检索、Agent 与系统](/ai/agents-and-systems)；
-- 完整工程源码：进入[MiniMind 全链路实践](/ai/minimind-practice)。
+- 完整小模型实现先完成 tiny Transformer；真实项目源码再进入[MiniMind 全链路实践](/ai/minimind-practice)。
 
 ## 分层过关标准
 

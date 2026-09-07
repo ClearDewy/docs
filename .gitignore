@@ -6,3 +6,6 @@ __pycache__/
 .venv/
 .DS_Store
 .idea/
+artifacts/
+.pico-tools/
+examples/embedded/pico-blink/build/

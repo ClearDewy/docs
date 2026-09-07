@@ -1,7 +1,7 @@
 ---
 title: 矩阵乘法：一行怎样读取一列
 date: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: ai
@@ -53,7 +53,7 @@ $$
 
 ## 推广到模型张量
 
-线性层常见：
+将一句话分成若干文本片段（token），为每个片段安排一个特征向量；多句话组成一批样本。记样本数为 B、每句片段数为 T，特征数为 Cin，线性层对每个位置应用同一组权重：
 
 ```text
 X [B,T,Cin] @ W [Cin,Cout] → Y [B,T,Cout]

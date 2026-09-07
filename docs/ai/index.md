@@ -1,7 +1,7 @@
 ---
 title: 智能算法
 date: 2026-09-04
-updated: 2026-09-05
+updated: 2026-09-06
 article: false
 type: overview
 status: learnable
@@ -14,6 +14,8 @@ description: 从数学表示、学习与神经网络出发，逐步进入 Transf
 这个专栏研究一个完整问题：**机器怎样从数据中形成可验证的能力，并被构造成可靠的智能系统？**
 
 这里不是模型名词表。章节导览负责定位，概念课负责讲清一个问题，实验负责产生证据，参考页负责快速查询，复习页负责确认掌握。当前第 0–7 章已经形成一条可连续学习、操作和验收的主路径。
+
+默认读者有数学与线性代数基础；“初学者”指尚未学习模型与相关工程。Python 本地环境可在[项目准备](/systems/python-project-workflow)补齐。概念自测、模拟实验和独立实现分别记录，互不替代。
 
 ## 两条阅读路径
 
@@ -39,10 +41,10 @@ description: 从数学表示、学习与神经网络出发，逐步进入 Transf
 | 1 | [机器学习与泛化评估](/ai/machine-learning) | 可学习 | 识别记忆训练题、偷看答案和虚假高分 |
 | 2 | [神经网络与表示学习](/ai/deep-learning) | 可学习 | 手写两层网络并解释反向传播 |
 | 3 | [序列、注意力与 Transformer](/ai/transformers) | 可学习 | 从 QKV 推导完整 attention 与多头 shape |
-| 4 | [基础模型与生成系统](/ai/foundation-models) | 可学习 | 从数据组装、训练和推理语言模型，并比较架构家族、MoE、多模态与扩散 |
+| 4 | [基础模型与生成系统](/ai/foundation-models) | 可学习 | 通过 tiny Transformer 跑通训练/加载/生成，再比较扩展架构 |
 | 5 | [数据、训练与对齐](/ai/data-training-alignment) | 可学习 | 审计数据谱系、SFT/LoRA、偏好目标和训练证据 |
 | 6 | [推理、评测与安全](/ai/inference-evaluation-safety) | 可学习 | 设计推理压测、分层评测、错误归因和模型外安全边界 |
-| 7 | [检索、Agent 与智能系统](/ai/agents-and-systems) | 可学习 | 构建可引用 RAG、工具协议和可恢复 Agent 状态机 |
+| 7 | [检索、Agent 与智能系统](/ai/agents-and-systems) | 可学习 | 运行检索/引用与 mock 状态机；真实模型和持久化系统另验收 |
 | 实战 | [MiniMind 全链路实践](/ai/minimind-practice) | 草稿案例 | 用真实提交验证模型、数据和训练知识 |
 
 `可学习` 表示已有概念课、练习或实验闭环；`草稿` 表示结构可导航，但还不能替代系统教材。完整依赖、课程顺序与专题边界见[知识地图](/ai/roadmap)。

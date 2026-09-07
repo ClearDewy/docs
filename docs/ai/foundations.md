@@ -1,7 +1,7 @@
 ---
 title: 0. 模型计算与优化基础
 date: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-06
 type: overview
 status: learnable
 track: ai
@@ -16,7 +16,7 @@ description: 建立读懂模型计算所需的最小数学语言，并用实验�
 
 ## 前置与目标
 
-前置：基础代数、函数、Python 列表。完成后应能：
+前置：数学与线性代数基础，能阅读 Python 列表和简单函数。本章将已有数学连接到模型计算，不重教基础算术；本地运行工具见[Python 项目准备](/systems/python-project-workflow)。完成后应能：
 
 - 从输出元素反推矩阵乘法的输入行和列；
 - 为 `[B,T,C]`、`[B,H,T,D]` 的每个轴写出语义；

@@ -1,7 +1,7 @@
 ---
 title: 任务状态与调度器怎样选择运行者
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: embedded
@@ -32,7 +32,7 @@ BLOCKED 不是“低优先级”，而是当前没有资格运行；READY 表示
 
 <ClientOnly><RtosSchedulerDemo /></ClientOnly>
 
-逐 tick 观察三个任务：采样任务周期释放数据，处理任务等待样本，通信任务等待处理结果。调度器总从 READY 集合选择最高优先级，不应让等待任务忙循环消耗 CPU。
+本演示有处理、通信和 Idle 三个任务；“ADC 新样本”按钮模拟任务外的采样事件。事件和挂起操作立即触发调度；每次“下一 tick”让当前任务完成一个工作单元，再选择运行者。处理任务等待样本，通信任务等待处理结果。调度器总从 READY 集合选择最高优先级，不应让等待任务忙循环消耗 CPU。
 
 ## 延时与周期唤醒
 

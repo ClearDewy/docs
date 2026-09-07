@@ -1,7 +1,7 @@
 ---
 title: 裸机固件证据实验
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: lab
 status: learnable
 track: embedded
@@ -20,7 +20,7 @@ description: 使用启动演示和可迁移检查表，为真实 MCU 的构建�
 
 ## 命题、环境和固定输入
 
-目标不是“LED 亮了”，而是证明映像身份、启动路径、寄存器配置和物理输出相互一致。浏览器阶段使用 `Reset → 初始化 RAM → main → 开时钟 → 配 GPIO → 写输出 → 测引脚` 固定路径；真实硬件阶段需要自选板卡并补齐版本清单。
+目标不是“LED 亮了”，而是证明映像身份、启动路径、寄存器配置和物理输出相互一致。浏览器阶段使用 `Reset → 初始化 RAM → main → 开时钟 → 配 GPIO → 写输出 → 测引脚` 固定路径；真实硬件阶段固定使用下一页的 Pico RP2040 工程，并记录版本清单。
 
 <ClientOnly><McuStartupDemo /></ClientOnly>
 
@@ -47,4 +47,4 @@ description: 使用启动演示和可迁移检查表，为真实 MCU 的构建�
 
 真实实验首次上电启用限流，避免驱动未知负载；结束时保存日志、map、ELF 哈希和波形截图，恢复调试引脚与启动配置。不要通过反复烧录掩盖不能稳定复现的启动故障。
 
-下一步：[MCU 速查](/embedded/mcu-bare-metal/reference)与[章节验收](/embedded/mcu-bare-metal/review)。
+下一步：[Pico 编译、烧录与测量](/embedded/mcu-bare-metal/pico-blink-lab)，完成后再查速查页与章节验收。

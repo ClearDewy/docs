@@ -1,22 +1,25 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-const tick=ref(0), samples=ref(0), results=ref(0), running=ref("Idle"), pauseProcessing=ref(false), log=ref<string[]>([]);
-const tasks=computed(()=>[
- {name:"处理",priority:3,state:pauseProcessing.value?"SUSPENDED":samples.value>0?"READY":"BLOCKED",wait:"样本队列"},
- {name:"通信",priority:2,state:results.value>0?"READY":"BLOCKED",wait:"结果队列"},
- {name:"Idle",priority:0,state:"READY",wait:"—"},
+import { computed, reactive, toRefs } from "vue";
+import { createScheduler, taskState, addSample as publish, nextTick, suspendProcessing } from "./rtos-model.mjs";
+const model = reactive(createScheduler());
+const { tick, samples, results, running, log, dropped } = toRefs(model);
+const pauseProcessing = computed({ get: () => model.paused, set: (value) => suspendProcessing(model, value) });
+const tasks = computed(() => [
+  { name: "处理", priority: 3, state: taskState(model, "处理"), wait: "样本可读且结果队列有空间" },
+  { name: "通信", priority: 2, state: taskState(model, "通信"), wait: "结果队列" },
+  { name: "Idle", priority: 0, state: taskState(model, "Idle"), wait: "—" },
 ]);
-function addSample(){samples.value=Math.min(8,samples.value+1);log.value.unshift(`tick ${tick.value}: ADC 发布样本，depth=${samples.value}`)}
-function next(){tick.value++;if(!pauseProcessing.value&&samples.value>0){running.value="处理";samples.value--;results.value=Math.min(8,results.value+1)}else if(results.value>0){running.value="通信";results.value--}else running.value="Idle";log.value.unshift(`tick ${tick.value}: ${running.value} RUNNING，sample=${samples.value} result=${results.value}`);log.value=log.value.slice(0,5)}
-function reset(){tick.value=0;samples.value=0;results.value=0;running.value="Idle";pauseProcessing.value=false;log.value=[]}
+function addSample() { publish(model); }
+function next() { nextTick(model); }
+function reset() { Object.assign(model, createScheduler()); }
 </script>
 <template>
   <section class="rtos-demo" aria-labelledby="rtos-title">
-    <header><div><strong id="rtos-title">单核三任务调度器</strong><p>队列事件只改变 READY 集合；下一 tick 再选择最高优先级任务。</p></div><button type="button" @click="reset">重置</button></header>
-    <div class="tasks"><div v-for="task in tasks" :key="task.name" class="task" :class="{running:task.name===running}"><b>{{ task.name }}</b><span>P{{ task.priority }}</span><strong>{{ task.name===running?'RUNNING':task.state }}</strong><small>等待：{{ task.wait }}</small></div></div>
-    <div class="queues"><span>样本队列 <b>{{ samples }} / 8</b></span><span>结果队列 <b>{{ results }} / 8</b></span><label><input v-model="pauseProcessing" type="checkbox"> 挂起处理任务</label></div>
+    <header><div><strong id="rtos-title">单核三任务调度器</strong><p>事件或挂起立即触发调度；下一 tick 让当前任务完成一个工作单元。</p></div><button type="button" @click="reset">重置</button></header>
+    <div class="tasks"><div v-for="task in tasks" :key="task.name" class="task" :class="{running:task.name===running}"><b>{{ task.name }}</b><span>P{{ task.priority }}</span><strong>{{ task.state }}</strong><small>等待：{{ task.wait }}</small></div></div>
+    <div class="queues"><span>样本队列 <b>{{ samples }} / 8</b></span><span>结果队列 <b>{{ results }} / 8</b></span><span>拒收样本 <b>{{ dropped }}</b></span><label><input v-model="pauseProcessing" type="checkbox"> 挂起处理任务</label></div>
     <div class="actions"><button type="button" @click="addSample">+ ADC 新样本</button><button type="button" class="primary" @click="next">下一 tick</button><b aria-live="polite">tick {{ tick }} · {{ running }} RUNNING</b></div>
-    <ol><li v-for="item in log" :key="item">{{ item }}</li><li v-if="!log.length">操作后显示最近状态转移。</li></ol>
+    <ol><li v-for="(item, index) in log" :key="index">{{ item }}</li><li v-if="!log.length">操作后显示最近状态转移。</li></ol>
   </section>
 </template>
 <style scoped>

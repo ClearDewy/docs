@@ -11,7 +11,9 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "check:python": "python3 examples/python/quickstart.py && python3 examples/python/ai_core_examples.py",
-    "check:content": "node scripts/check-content.mjs"
+    "check:content": "node scripts/check-content.mjs",
+    "check:learning": "python3 scripts/tests/learning-examples.py && node scripts/tests/rtos.mjs && python3 examples/python/rag_trace.py",
+    "check:tiny": "node scripts/check-tiny.mjs"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.5",

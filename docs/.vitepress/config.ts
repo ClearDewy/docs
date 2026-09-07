@@ -183,6 +183,7 @@ export default defineConfig({
             { text: "Prefill 与 KV Cache", link: "/ai/foundation-models/prefill-kv-cache" },
             { text: "采样策略", link: "/ai/foundation-models/sampling" },
             { text: "最小语言模型实验", link: "/ai/foundation-models/language-model-lab" },
+            { text: "tiny Transformer 实操", link: "/ai/foundation-models/tiny-transformer-lab" },
             { text: "BERT、T5 与 GPT", link: "/ai/foundation-models/model-families" },
             { text: "Scaling 与 MoE", link: "/ai/foundation-models/scaling-and-moe" },
             { text: "多模态与扩散", link: "/ai/foundation-models/multimodal-and-diffusion" },
@@ -256,6 +257,7 @@ export default defineConfig({
           text: "工程方法",
           items: [
             { text: "在浏览器运行 Python", link: "/systems/browser-python" },
+            { text: "本地 Python 项目准备", link: "/systems/python-project-workflow" },
             { text: "可复现的代码示例", link: "/systems/reproducible-examples" },
           ],
         },
@@ -294,9 +296,11 @@ export default defineConfig({
         {
           text: "2. MCU、启动与裸机固件", link: "/embedded/mcu-bare-metal", collapsed: true,
           items: [
+            { text: "C 与构建衔接", link: "/embedded/mcu-bare-metal/c-build-bridge" },
             { text: "资源地图与数据手册", link: "/embedded/mcu-bare-metal/mcu-map-and-datasheet" },
             { text: "启动、链接与 GPIO", link: "/embedded/mcu-bare-metal/startup-linking-and-gpio" },
             { text: "裸机固件实验", link: "/embedded/mcu-bare-metal/firmware-evidence-lab" },
+            { text: "Pico 编译烧录与测量", link: "/embedded/mcu-bare-metal/pico-blink-lab" },
             { text: "速查", link: "/embedded/mcu-bare-metal/reference" },
             { text: "复习与验收", link: "/embedded/mcu-bare-metal/review" },
           ],

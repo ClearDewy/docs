@@ -1,7 +1,7 @@
 ---
 title: 张量的轴、reshape 与 transpose
 date: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: ai
@@ -16,6 +16,8 @@ description: 从一批 token 表示出发，理解 shape 是带语义的类型�
 ## 问题与目标
 
 同一个 `[2,4,8]` 既可能是两张图片，也可能是两条序列。**shape 只给长度，轴名才给语义。** 本课用 `[B,T,C]=[2,4,8]` 贯穿 reshape、transpose 和 broadcast。
+
+这里暂把一句话拆成若干文本片段，每个片段叫一个 token；为每个 token 放一组数作为特征向量。两句话组成一个 batch。比如每句 4 个 token、每个 token 8 个数，就得到 `[2,4,8]`。本页只研究容器的轴；这些数字怎样由 tokenizer 与可学习 Embedding 得到，在基础模型章展开。
 
 ## 心智模型：先写轴，再写数
 

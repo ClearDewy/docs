@@ -1,7 +1,7 @@
 ---
 title: 训练一个最小 next-token 模型
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: lab
 status: verified
 track: ai
@@ -59,22 +59,28 @@ description: 仅用 Python 标准库训练一个字符 bigram 模型，观察参
 
 ## 实验一：破坏标签
 
-把 `pairs` 中的 target 随机打乱，但保持 current 不变。观察 loss 能否继续下降、生成是否仍保持 `ab` 结构。这个对照验证训练目标来自当前—后继配对，而不是代码自动知道语言规律。
+将代码中 `shuffle_targets = False` 改为 `True`。代码固定 seed=7，只打乱 target，保持 current 不变。观察 loss 能否继续下降、生成是否仍保持 `ab` 结构。这个对照验证训练目标来自当前—后继配对，而不是代码自动知道语言规律。
 
 ## 实验二：改变训练分布
 
-增加多条 `^aaaa$`。重新训练后检查 `a` 的后继分布。预期 `a→a` 概率上升；这是数据分布改变参数的例子。
+把 `extra_a_sequences = 0` 改为 `20`，增加 20 条 `^aaaa$`。重新训练后检查 `a` 的后继分布。预期 `a→a` 概率上升；这是数据分布改变参数的例子。
 
 ## 实验三：只改变温度
 
-不重新训练，把 `generate` 的 temperature 改成 `0.3` 和 `1.5`。Logits 保持完全相同，但抽样分布改变。记录多个 seed，不能只比较一条输出。
+不重新训练，把 `main` 中的 `temperature` 改成 `0.3` 和 `1.5`。Logits 保持完全相同，但抽样分布改变。记录多个 seed，不能只比较一条输出。
+
+## 验收条件随问题改变
+
+三类实验都检查概率和、有限生成长度、固定 seed 复现；不能继续要求生成结果只能属于 `ab` 系列。改变数据后生成 `a`、`aaaa` 等是允许的，应检查 `P(a|a)` 是否上升。比较多个 seed 的频率时先固定 logits；不要把一个随机句子当作分布。
+
+本地也能运行同一份代码：`python3 examples/python/bigram_lab.py`（先进入博客仓库）。页面直接引用此文件，变式测试运行同一份实现。
 
 ## 实验记录
 
 | 条件 | 必须记录 | 通过条件 |
 | --- | --- | --- |
 | 基线 | epoch loss、转移概率、sample | loss 下降，断言通过 |
-| 标签破坏 | 新 loss 与 sample | 结构规律显著减弱 |
+| 标签破坏 | 新 loss 与 sample | 记录转移分布差异；loss 仍可能下降 |
 | 数据改变 | `a` 的后继概率 | 概率随计数方向变化 |
 | 温度改变 | 相同 logits、多 seed 输出 | 参数不变，采样分布变化 |
 
@@ -88,4 +94,4 @@ description: 仅用 Python 标准库训练一个字符 bigram 模型，观察参
 
 ## 清理与复现
 
-代码只在浏览器 Python 运行时的内存中执行，不写文件。复现记录包含 Python 版本、数据序列、epoch、学习率、temperature、seed 与实际输出。下一步比较[BERT、T5 与 GPT 的三种结构](/ai/foundation-models/model-families)。
+浏览器内代码只在 Python 运行时的内存中执行，不写文件。复现记录包含 Python 版本、数据序列、epoch、学习率、temperature、seed 与实际输出。下一步进入[从训练到重新加载的 tiny Transformer 实验](/ai/foundation-models/tiny-transformer-lab)，把本页的 logits 表替换为真实 Decoder 网络。

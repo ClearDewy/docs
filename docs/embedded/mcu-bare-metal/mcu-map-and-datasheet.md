@@ -1,12 +1,12 @@
 ---
 title: 怎样阅读 MCU 资源地图和数据手册
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: embedded
 chapter: mcu-bare-metal
-prerequisites: [/embedded/digital-systems/state-clock-cpu-memory]
+prerequisites: [/embedded/mcu-bare-metal/c-build-bridge]
 outcomes:
   - 能区分数据手册、参考手册、体系结构手册和板卡原理图
   - 能从功能需求追到引脚、时钟、地址与电气边界

@@ -1,7 +1,7 @@
 ---
 title: 7. 检索、Agent 与智能系统
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: overview
 status: learnable
 track: ai
@@ -36,7 +36,7 @@ Agent 不是“更长的 Prompt”。它是模型处于一个软件控制循环�
 | 4 | [Agent Loop 怎样成为显式状态机](/ai/agents-and-systems/agent-state-machine) | 能画出状态、事件、动作和终止条件 |
 | 5 | [上下文、会话状态与长期记忆怎样区分](/ai/agents-and-systems/memory-and-context) | 能为事实定义来源、过期与删除 |
 | 6 | [重试、审批与多 Agent 怎样保持可控](/ai/agents-and-systems/reliability-and-multi-agent) | 能设计幂等、恢复、预算和责任边界 |
-| 7 | [单工具 Agent 状态机实验](/ai/agents-and-systems/agent-loop-lab) | 运行成功、超时与审批三条路径 |
+| 7 | [单工具 Agent 状态机实验](/ai/agents-and-systems/agent-loop-lab) | 运行成功、超时、等待、批准、拒绝和取消路径 |
 | 8 | [检索与 Agent 系统速查](/ai/agents-and-systems/reference) | 查询协议和不变量 |
 | 9 | [第 7 章复习与验收](/ai/agents-and-systems/review) | 完成端到端系统设计与故障归因 |
 

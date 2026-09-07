@@ -95,6 +95,12 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 - Python、C++、Rust、Linux、Docker 等是技术标签或二级主题，不新增为一级专栏。
 - 无法确定归属时，按文章要解决的主要问题决定，而不是按使用的编程语言决定。
 
+## 读者与学习验收
+
+默认读者具备数学与线性代数基础，不从基础算术开始。首次学习模型或硬件时，需要补齐对象来源、编程工具和完整操作路径：Python 环境归入系统工程；C/交叉编译与固定 Pico 实操归入 MCU 章节；tiny Transformer 串接 LLM 原理与项目案例。
+
+概念自测、模拟实验、独立实现、真实硬件实测分别记录。目录中的 `learnable` 不能代替真实任务验收，未连接硬件的教程不得写成已完成板级实测。页面中可运行源码优先直接引用 `examples/`，CI 对相同实现运行基线与课程要求的变式，避免网页和测试各维护一份答案。
+
 ## 内容组织规则
 
 - 详细的信息架构、内容类型、教学闭环、动画、成熟度和质量门禁以[知识文档体系规范](docs/guide/knowledge-documentation-standard.md)为准。
@@ -239,6 +245,8 @@ npm run docs:dev
 ```bash
 npm run check:python
 npm run check:content
+npm run check:learning
+npm run check:tiny # 自动选择本机依赖组，计算固定 CPU
 npm run docs:build
 npm run docs:preview
 ```

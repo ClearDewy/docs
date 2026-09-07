@@ -2,7 +2,8 @@ version = 1
 revision = 3
 requires-python = "==3.12.*"
 resolution-markers = [
-    "extra != 'extra-19-cleardewy-practices-cpu' and extra != 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps'",
+    "(platform_machine != 'arm64' and extra != 'extra-19-cleardewy-practices-cpu' and extra != 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra != 'extra-19-cleardewy-practices-cpu' and extra != 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')",
+    "platform_machine == 'arm64' and sys_platform == 'darwin' and extra != 'extra-19-cleardewy-practices-cpu' and extra != 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps'",
     "extra != 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130' and extra != 'extra-19-cleardewy-practices-mps'",
     "sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu' and extra != 'extra-19-cleardewy-practices-cu130' and extra != 'extra-19-cleardewy-practices-mps'",
     "sys_platform == 'darwin' and extra == 'extra-19-cleardewy-practices-cpu' and extra != 'extra-19-cleardewy-practices-cu130' and extra != 'extra-19-cleardewy-practices-mps'",
@@ -26,19 +27,19 @@ source = { virtual = "." }
 
 [package.optional-dependencies]
 cpu = [
-    { name = "torch", version = "2.13.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
-    { name = "torch", version = "2.13.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(sys_platform == 'linux' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform == 'win32' and extra == 'extra-19-cleardewy-practices-cpu') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "torch", version = "2.13.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
 cu130 = [
     { name = "torch", version = "2.13.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
 mps = [
-    { name = "torch", version = "2.13.0", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "torch", version = "2.13.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_machine == 'arm64' and sys_platform == 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "torch", version = "2.13.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "torch", marker = "platform_machine == 'arm64' and sys_platform == 'darwin' and extra == 'mps'", specifier = "==2.13.0" },
+    { name = "torch", marker = "platform_machine == 'arm64' and sys_platform == 'darwin' and extra == 'mps'", specifier = "==2.13.0", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "cleardewy-practices", extra = "mps" } },
     { name = "torch", marker = "(sys_platform == 'linux' and extra == 'cpu') or (sys_platform == 'win32' and extra == 'cpu')", specifier = "==2.13.0", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "cleardewy-practices", extra = "cpu" } },
     { name = "torch", marker = "(sys_platform == 'linux' and extra == 'cu130') or (sys_platform == 'win32' and extra == 'cu130')", specifier = "==2.13.0", index = "https://download.pytorch.org/whl/cu130", conflict = { package = "cleardewy-practices", extra = "cu130" } },
 ]
@@ -137,7 +138,7 @@ name = "jinja2"
 version = "3.1.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "markupsafe" },
+    { name = "markupsafe", marker = "(sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform == 'darwin' and extra == 'extra-19-cleardewy-practices-cu130') or (sys_platform == 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra != 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra != 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d", size = 245115, upload-time = "2025-03-05T20:05:02.478Z" }
 wheels = [
@@ -359,7 +360,7 @@ name = "sympy"
 version = "1.14.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "mpmath" },
+    { name = "mpmath", marker = "(sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform == 'darwin' and extra == 'extra-19-cleardewy-practices-cu130') or (sys_platform == 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra != 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra != 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/83/d3/803453b36afefb7c2bb238361cd4ae6125a569b4db67cd9e79846ba2d68c/sympy-1.14.0.tar.gz", hash = "sha256:d3d3fe8df1e5a0b42f0e7bdf50541697dbe7d23746e894990c030e2b05e72517", size = 7793921, upload-time = "2025-04-27T18:05:01.611Z" }
 wheels = [
@@ -370,44 +371,20 @@ wheels = [
 name = "torch"
 version = "2.13.0"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
+resolution-markers = [
+    "platform_machine == 'arm64' and sys_platform == 'darwin'",
+]
 dependencies = [
-    { name = "filelock", marker = "sys_platform == 'darwin'" },
-    { name = "fsspec", marker = "sys_platform == 'darwin'" },
-    { name = "jinja2", marker = "sys_platform == 'darwin'" },
-    { name = "networkx", marker = "sys_platform == 'darwin'" },
-    { name = "setuptools", marker = "sys_platform == 'darwin'" },
-    { name = "sympy", marker = "sys_platform == 'darwin'" },
-    { name = "typing-extensions", marker = "sys_platform == 'darwin'" },
+    { name = "filelock", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "fsspec", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "jinja2", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "networkx", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "setuptools", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "sympy", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "typing-extensions", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
 ]
 wheels = [
     { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.13.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:2fe228aba290d14b9f31b049be550dbd469c3fd3013d7a19705b30454da97027", upload-time = "2026-07-08T12:26:18Z" },
-]
-
-[[package]]
-name = "torch"
-version = "2.13.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "cuda-bindings", marker = "sys_platform == 'linux'" },
-    { name = "cuda-toolkit", extra = ["cublas", "cudart", "cufft", "cufile", "cupti", "curand", "cusolver", "cusparse", "nvjitlink", "nvrtc", "nvtx"], marker = "(sys_platform == 'linux' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps')" },
-    { name = "filelock" },
-    { name = "fsspec" },
-    { name = "jinja2" },
-    { name = "networkx" },
-    { name = "nvidia-cudnn-cu13", marker = "sys_platform == 'linux'" },
-    { name = "nvidia-cusparselt-cu13", marker = "sys_platform == 'linux'" },
-    { name = "nvidia-nccl-cu13", marker = "sys_platform == 'linux'" },
-    { name = "nvidia-nvshmem-cu13", marker = "sys_platform == 'linux'" },
-    { name = "setuptools" },
-    { name = "sympy" },
-    { name = "triton", marker = "sys_platform == 'linux'" },
-    { name = "typing-extensions" },
-]
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c4/3a/ed0f4d4d1dcde03bced7aac9a28e800abcdc0cbd06b6775044c9fbd877b7/torch-2.13.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:2fe228aba290d14b9f31b049be550dbd469c3fd3013d7a19705b30454da97027", size = 111213045, upload-time = "2026-07-08T16:05:22.997Z" },
-    { url = "https://files.pythonhosted.org/packages/df/a9/f6a2a4d763ff1df02e9a64c477029db614295bc9367f4131223791ccc243/torch-2.13.0-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:572df8be8ffb4599c88cbd6a0726f1f854f4da65d2e3c09f0e2c2283333cd6d4", size = 427210998, upload-time = "2026-07-08T16:04:37.708Z" },
-    { url = "https://files.pythonhosted.org/packages/f3/82/fea946351658e6534db52d2cc12bc53087cbf87f9440c5f180f367c1950b/torch-2.13.0-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:796633c4cdf0fe2cdced72d8f88f22e73dbcfce83132763162f6d4bff13b820b", size = 526605292, upload-time = "2026-07-08T16:04:22.81Z" },
-    { url = "https://files.pythonhosted.org/packages/21/d6/e8f3c6f7e01f626f77259de9860d2a78bc84c40539e28e79b7e98b0bb659/torch-2.13.0-cp312-cp312-win_amd64.whl", hash = "sha256:024c6cc0c1b085f2f91f20a3dc27b0471d021c31ce84b81be3afdc39f791fd9d", size = 122057313, upload-time = "2026-07-08T16:03:53.43Z" },
 ]
 
 [[package]]
@@ -418,13 +395,13 @@ resolution-markers = [
     "sys_platform != 'darwin'",
 ]
 dependencies = [
-    { name = "filelock", marker = "sys_platform != 'darwin'" },
-    { name = "fsspec", marker = "sys_platform != 'darwin'" },
-    { name = "jinja2", marker = "sys_platform != 'darwin'" },
-    { name = "networkx", marker = "sys_platform != 'darwin'" },
-    { name = "setuptools", marker = "sys_platform != 'darwin'" },
-    { name = "sympy", marker = "sys_platform != 'darwin'" },
-    { name = "typing-extensions", marker = "sys_platform != 'darwin'" },
+    { name = "filelock", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "fsspec", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "jinja2", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "networkx", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "setuptools", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "sympy", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
+    { name = "typing-extensions", marker = "(platform_machine != 'arm64' and extra == 'extra-19-cleardewy-practices-mps') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-cpu') or (sys_platform != 'darwin' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-cu130') or (extra == 'extra-19-cleardewy-practices-cpu' and extra == 'extra-19-cleardewy-practices-mps') or (extra == 'extra-19-cleardewy-practices-cu130' and extra == 'extra-19-cleardewy-practices-mps')" },
 ]
 wheels = [
     { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp312-cp312-linux_s390x.whl", hash = "sha256:ffadde149901c8afa138daa38d898264003cfcf1a3336ca5cd964b5af227d867", upload-time = "2026-07-08T19:28:41Z" },

@@ -1,7 +1,7 @@
 ---
 title: MiniMind 全链路实践
 date: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-06
 type: case-study
 status: draft
 track: ai
@@ -24,6 +24,12 @@ description: 把 MiniMind 作为实践样本，对照验证模型、数据、训
 ::: warning 案例状态
 以下内容是基于上述时间与提交的源码阅读路线，不是当前上游状态声明，也不是已完成的实验报告。执行前必须重新确认提交、依赖、数据许可和硬件条件；观察不能跨版本直接外推。
 :::
+
+## 先完成本站的小模型实现
+
+先运行[tiny Transformer 实验](/ai/foundation-models/tiny-transformer-lab)，亲手完成一次前向 shape 追踪、标签检查、训练、保存、加载与故障修复，再使用下表读 MiniMind。本站小模型提供固定、可执行的学习闭环；本页仍是指定旧提交的源码阅读案例，没有据此宣称 MiniMind 的全阶段训练已经复现。
+
+迁移时逐项找出本地 `batch / Block / TinyLM / update / checkpoint` 在 MiniMind 中对应的位置；先只比较 Dense 路径，不一次加入 GQA、MoE、SFT 和 DPO。
 
 ## 1. 项目映射到知识体系
 

@@ -1,7 +1,7 @@
 ---
 title: 一个 Decoder Block 如何更新 token 表示
 date: 2026-09-04
-updated: 2026-09-05
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: ai
@@ -125,7 +125,7 @@ Residual 不是无条件保证训练稳定，也不是拼接。若使用 dropout
 常见两层 FFN：
 
 $$
-FFN(x)=W_2\phi(W_1x+b_1)+b_2
+FFN(x)=\phi(xW_1+b_1)W_2+b_2
 $$
 
 假设模型维 `C=8`、FFN 中间维 `Cff=32`：

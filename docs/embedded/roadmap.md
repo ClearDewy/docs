@@ -1,7 +1,7 @@
 ---
 title: 嵌入式知识地图
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: overview
 status: learnable
 track: embedded
@@ -45,6 +45,10 @@ description: 展示嵌入式课程的唯一主路径、直接依赖、实验阶�
 → 复习与验收
 ```
 
+第 2 章内部路径：
+
+[C 与构建衔接](/embedded/mcu-bare-metal/c-build-bridge) → 资源地图 → 启动与 GPIO → 浏览器证据实验 → [Pico 实操](/embedded/mcu-bare-metal/pico-blink-lab) → 速查与分层验收。
+
 ## 能力阶梯
 
 | 阶段 | 能做什么 | 主要证据 |
@@ -81,6 +85,6 @@ description: 展示嵌入式课程的唯一主路径、直接依赖、实验阶�
 | 6 | [原理图、PCB 与硬件边界](/embedded/hardware-design) | 可学习 |
 | 7 | [调试、升级与设备可靠性](/embedded/device-reliability) | 可学习 |
 
-“可学习”表示页面形成解释、操作、实验和验收闭环；涉及具体芯片、电气参数与实时性能的结论仍须在选定硬件上完成验证，不能把通用教学模型标成板级实测。
+“可学习”表示页面在其声明的概念或模拟范围内形成学习闭环；Pico 实操提供固定工程与待实测步骤，尚未板验；涉及具体芯片、电气参数与实时性能的结论仍须在选定硬件上完成验证，不能把通用教学模型标成板级实测。
 
 从[第 0 章入口](/embedded/electronics-foundations)开始。

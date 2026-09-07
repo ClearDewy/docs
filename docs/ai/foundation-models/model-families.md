@@ -1,13 +1,13 @@
 ---
 title: BERT、T5 与 GPT 为什么是三种结构
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: ai
 chapter: foundation-models
 prerequisites:
-  - /ai/foundation-models/language-model-lab
+  - /ai/foundation-models/tiny-transformer-lab
 outcomes:
   - 能从信息可见性和训练目标区分 Encoder-only、Encoder–Decoder 与 Decoder-only
   - 能为表示理解、条件转换和开放式生成选择合适架构家族

@@ -1,7 +1,7 @@
 ---
 title: 智能算法知识地图
 date: 2026-09-04
-updated: 2026-09-05
+updated: 2026-09-06
 article: false
 type: overview
 status: verified
@@ -46,29 +46,30 @@ description: 智能算法专栏的依赖关系、学习顺序、内容边界和�
 20. [Prefill 与 KV Cache](/ai/foundation-models/prefill-kv-cache)：理解增量推理怎样复用历史 K/V。
 21. [采样策略](/ai/foundation-models/sampling)：操作 temperature、top-k 和 top-p。
 22. [最小语言模型实验](/ai/foundation-models/language-model-lab)：训练可更新 logits 并复现生成。
-23. [模型架构家族](/ai/foundation-models/model-families)：区分 Encoder-only、Encoder–Decoder 与 Decoder-only。
-24. [Scaling 与 MoE](/ai/foundation-models/scaling-and-moe)：区分参数、数据、计算与稀疏专家。
-25. [多模态与扩散](/ai/foundation-models/multimodal-and-diffusion)：连接视觉语言理解与去噪生成。
-26. [能力来源与边界](/ai/foundation-models/capability-boundaries)：区分参数、上下文、检索和工具结果。
-27. [数据谱系与切分](/ai/data-training-alignment/data-lineage-and-splits)：记录来源、版本、去重簇与无泄漏 split。
-28. [预训练证据](/ai/data-training-alignment/pretraining-evidence)：从单 batch 过拟合推进到可恢复基线。
-29. [SFT 与 Chat Template](/ai/data-training-alignment/sft-and-chat-template)：连接结构化消息、token 和 loss mask。
-30. [LoRA 适配](/ai/data-training-alignment/lora-adaptation)：区分冻结基座与低秩可训练增量。
-31. [偏好数据与 DPO](/ai/data-training-alignment/preference-alignment)：理解 chosen/rejected、参考策略和回归。
-32. [训练审计实验](/ai/data-training-alignment/training-evidence-lab)：用断言检查重复、SFT mask 和偏好对。
-33. [推理服务请求](/ai/inference-evaluation-safety/inference-serving)：区分 API、调度、runtime、cache 与输出。
-34. [性能指标](/ai/inference-evaluation-safety/performance-metrics)：测量 TTFT、TPOT、吞吐、显存和成本。
-35. [可信评测设计](/ai/inference-evaluation-safety/evaluation-design)：从用户任务建立数据、rubric、指标和基线。
-36. [错误分类与归因](/ai/inference-evaluation-safety/error-analysis)：用 oracle 对照定位模型、检索、工具和评分错误。
-37. [模型外安全控制](/ai/inference-evaluation-safety/safety-controls)：落实权限、schema、审批、隔离与审计。
-38. [评测与安全实验](/ai/inference-evaluation-safety/evaluation-safety-lab)：保留逐样本证据并注入高风险动作。
-39. [RAG 证据链](/ai/agents-and-systems/rag-pipeline)：从文档解析到引用建立可追踪路径。
-40. [检索与回答评测](/ai/agents-and-systems/retrieval-evaluation)：分开测 corpus、retrieval、context 和 answer。
-41. [工具调用协议](/ai/agents-and-systems/tool-protocol)：定义 schema、权限、错误、副作用与幂等。
-42. [Agent 状态机](/ai/agents-and-systems/agent-state-machine)：闭合成功、失败、等待、取消和恢复路径。
-43. [上下文与记忆](/ai/agents-and-systems/memory-and-context)：区分本轮 token、任务状态和长期事实。
-44. [可靠性与多 Agent](/ai/agents-and-systems/reliability-and-multi-agent)：控制重试、审批、预算和合并责任。
-45. [Agent 状态机实验](/ai/agents-and-systems/agent-loop-lab)：运行成功、超时与写入审批路径。
+23. [tiny Transformer 实操](/ai/foundation-models/tiny-transformer-lab)：在 CPU 上训练、保存、重新加载并验证恢复。
+24. [模型架构家族](/ai/foundation-models/model-families)：区分 Encoder-only、Encoder–Decoder 与 Decoder-only。
+25. [Scaling 与 MoE](/ai/foundation-models/scaling-and-moe)：区分参数、数据、计算与稀疏专家。
+26. [多模态与扩散](/ai/foundation-models/multimodal-and-diffusion)：连接视觉语言理解与去噪生成。
+27. [能力来源与边界](/ai/foundation-models/capability-boundaries)：区分参数、上下文、检索和工具结果。
+28. [数据谱系与切分](/ai/data-training-alignment/data-lineage-and-splits)：记录来源、版本、去重簇与无泄漏 split。
+29. [预训练证据](/ai/data-training-alignment/pretraining-evidence)：从单 batch 过拟合推进到可恢复基线。
+30. [SFT 与 Chat Template](/ai/data-training-alignment/sft-and-chat-template)：连接结构化消息、token 和 loss mask。
+31. [LoRA 适配](/ai/data-training-alignment/lora-adaptation)：区分冻结基座与低秩可训练增量。
+32. [偏好数据与 DPO](/ai/data-training-alignment/preference-alignment)：理解 chosen/rejected、参考策略和回归。
+33. [训练审计实验](/ai/data-training-alignment/training-evidence-lab)：用断言检查重复、SFT mask 和偏好对。
+34. [推理服务请求](/ai/inference-evaluation-safety/inference-serving)：区分 API、调度、runtime、cache 与输出。
+35. [性能指标](/ai/inference-evaluation-safety/performance-metrics)：测量 TTFT、TPOT、吞吐、显存和成本。
+36. [可信评测设计](/ai/inference-evaluation-safety/evaluation-design)：从用户任务建立数据、rubric、指标和基线。
+37. [错误分类与归因](/ai/inference-evaluation-safety/error-analysis)：用 oracle 对照定位模型、检索、工具和评分错误。
+38. [模型外安全控制](/ai/inference-evaluation-safety/safety-controls)：落实权限、schema、审批、隔离与审计。
+39. [评测与安全实验](/ai/inference-evaluation-safety/evaluation-safety-lab)：保留逐样本证据并注入高风险动作。
+40. [RAG 证据链](/ai/agents-and-systems/rag-pipeline)：从文档解析到引用建立可追踪路径。
+41. [检索与回答评测](/ai/agents-and-systems/retrieval-evaluation)：分开测 corpus、retrieval、context 和 answer。
+42. [工具调用协议](/ai/agents-and-systems/tool-protocol)：定义 schema、权限、错误、副作用与幂等。
+43. [Agent 状态机](/ai/agents-and-systems/agent-state-machine)：闭合成功、失败、等待、取消和恢复路径。
+44. [上下文与记忆](/ai/agents-and-systems/memory-and-context)：区分本轮 token、任务状态和长期事实。
+45. [可靠性与多 Agent](/ai/agents-and-systems/reliability-and-multi-agent)：控制重试、审批、预算和合并责任。
+46. [Agent 状态机实验](/ai/agents-and-systems/agent-loop-lab)：运行成功、超时与写入审批路径。
 
 ## 章节边界
 
@@ -88,7 +89,7 @@ description: 智能算法专栏的依赖关系、学习顺序、内容边界和�
 | 状态 | 页面范围 | 含义 |
 | --- | --- | --- |
 | `verified` | 本地图、规范页 | 结构和链接已校验 |
-| `learnable` | 第 0–7 章核心单元 | 有目标、例子、验证、自测和下一步 |
+| `learnable` | 第 0–7 章核心单元 | 概念/模拟可学习；实现能力需完成 tiny Transformer 与迁移题 |
 | `draft` | MiniMind 案例与后续专题 | 可导航且边界明确，仍缺完整学习闭环 |
 
 下一轮优先把第 0–7 章知识应用到 MiniMind 案例，并补充强化学习、推荐与时间序列专题；专题不得破坏当前唯一主路径。

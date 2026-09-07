@@ -33,6 +33,7 @@ required-environments = [
 [tool.uv.sources]
 torch = [
     { index = "pytorch-cpu", extra = "cpu" },
+    { index = "pytorch-cpu", extra = "mps" },
     { index = "pytorch-cu130", extra = "cu130" },
 ]
 

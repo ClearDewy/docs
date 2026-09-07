@@ -1,7 +1,7 @@
 ---
 title: 第 7 章复习与验收
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: review
 status: learnable
 track: ai
@@ -37,7 +37,16 @@ description: 通过检索分层、工具契约、状态路径和失败恢复任�
 5. 上下文、任务状态、长期记忆和外部知识存储边界；
 6. run/call/attempt/event 身份与 trace；
 7. 多 Agent 如确有必要时的任务卡与合并 owner；
-8. 运行[状态机实验](/ai/agents-and-systems/agent-loop-lab)并实现 FORBIDDEN/CANCELLED。
+8. 运行[状态机实验](/ai/agents-and-systems/agent-loop-lab)并独立验证禁止、拒绝、取消与迟到批准事件。
+
+## 不照抄的代码迁移
+
+1. 用 [RAG 实验](/ai/agents-and-systems/rag-pipeline)问“餐饮报销上限是多少”，在运行前写下当前版本、数值与引用；
+2. 只将身份改成 guest，确认候选与引用都不能泄漏 staff 内容；
+3. 将 Agent 停在等待审批，重复调用 `drive(run)` 三次，再输入 reject；工具次数必须始终为 0；
+4. 给拒绝后的同一任务发送 approve，确认终态和事件记录不变。
+
+参考：第 1 题为 `100 元/日`、`travel-2026:s2`；第 2 题无可用证据；第 3、4 题可以用 `run.attempts == 0` 与状态/日志快照比较验收。通过只表示确定性检索与 mock 状态机实现正确，真实模型、工具副作用和跨进程持久化另做集成验收。
 
 ## 评分
 

@@ -1,7 +1,7 @@
 ---
 title: LoRA 怎样进行参数高效适配
 date: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 type: lesson
 status: learnable
 track: ai
@@ -36,6 +36,29 @@ $$A\in\mathbb{R}^{d_{in}\times r},\quad B\in\mathbb{R}^{r\times d_{out}},\quad r
 原参数量 `d_in×d_out`，LoRA 可训练参数量 `r(d_in+d_out)`。例如 1024×1024 层、`r=8`：原层约 1.05M 参数，增量约 16K。
 
 实现中常见缩放 `α/r`，初始化一侧为零以让初始增量为零；具体 A/B 方向和记号可能因库而异，应以实际权重 shape 为准。
+
+## 用一个输入看见低秩分支的输出
+
+先不处理 1024 维，取行向量 `x=[2,1]`、`W` 为二阶单位阵、rank=1：
+
+$$A=\begin{bmatrix}1\\2\end{bmatrix},\quad B=\begin{bmatrix}0.1&-0.2\end{bmatrix}$$
+
+按前向顺序算：`xW=[2,1]`；`xA=2×1+1×2=4`；`(xA)B=[0.4,-0.8]`；所以在缩放 `α/r=1` 时，最终输出为 `[2.4,0.2]`。
+
+也可以先算 `ΔW=AB=[[0.1,-0.2],[0.2,-0.4]]`，再算 `x(W+ΔW)`，应得到相同结果。这就是合并前后的前向等价关系；量化和浮点舍入下应使用误差容限比较。
+
+<ClientOnly><PythonPlayground title="验证 LoRA 分支与合并权重" :code="`x = [2, 1]
+W = [[1, 0], [0, 1]]
+A = [1, 2]
+B = [0.1, -0.2]
+low = sum(x[i]*A[i] for i in range(2))
+separate = [sum(x[i]*W[i][j] for i in range(2))+low*B[j] for j in range(2)]
+merged = [[W[i][j]+A[i]*B[j] for j in range(2)] for i in range(2)]
+together = [sum(x[i]*merged[i][j] for i in range(2)) for j in range(2)]
+assert all(abs(a-b)<1e-12 for a,b in zip(separate,together))
+print([round(v, 4) for v in separate])`" /></ClientOnly>
+
+自测：将 B 改成全零，初始输出是否等于基座？答案是等于；但“当前增量为零”并不等于 B 的梯度也为零。训练时冻结的是 W，梯度仍能经过基座路径到达可训练分支。本例只验证一次前向，没有执行 adapter 微调。
 
 ## 四类状态
 

@@ -33,6 +33,7 @@ description: 从计算机基础到分布式系统、软件架构与可靠性工�
 
 ## 当前内容
 
+- [本地 Python 项目准备](/systems/python-project-workflow)
 - [在浏览器运行 Python](/systems/browser-python)
 - [可复现的代码示例](/systems/reproducible-examples)
 
