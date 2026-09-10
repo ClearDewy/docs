@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from "node:url";
 import { teekConfig } from "./teek-config";
 
 const siteUrl = "https://docs.dewyx.cn";
-const description = "围绕智能算法、系统工程、嵌入式与量化研究持续整理的个人知识库。";
+const description = "围绕智能算法、系统工程、嵌入式、量化研究、音乐与摄影持续整理的个人知识库。";
 const avatarUrl = "https://avatars.githubusercontent.com/u/93588007?s=512&v=4";
 
 export default defineConfig({
@@ -83,18 +83,15 @@ export default defineConfig({
       { text: "系统工程", link: "/systems/" },
       { text: "嵌入式", link: "/embedded/" },
       { text: "量化研究", link: "/quant/" },
+      { text: "音乐", link: "/music/" },
+      { text: "摄影", link: "/photography/" },
       {
-        text: "索引",
+        text: "站点",
         items: [
           { text: "文章清单", link: "/article-overview" },
           { text: "归档", link: "/archives" },
           { text: "分类", link: "/categories" },
           { text: "标签", link: "/tags" },
-        ],
-      },
-      {
-        text: "更多",
-        items: [
           { text: "使用指南", link: "/guide/start" },
           { text: "交互组件", link: "/guide/interactive-components" },
           { text: "关于", link: "/about" },
@@ -109,6 +106,7 @@ export default defineConfig({
             { text: "使用这个知识库", link: "/guide/start" },
             { text: "知识文档体系规范", link: "/guide/knowledge-documentation-standard" },
             { text: "交互组件", link: "/guide/interactive-components" },
+            { text: "音乐与摄影修复记录", link: "/guide/music-photography-acceptance" },
           ],
         },
       ],
@@ -371,6 +369,63 @@ export default defineConfig({
           items: [
             { text: "专栏总览", link: "/quant/" },
             { text: "知识地图", link: "/quant/roadmap" },
+          ],
+        },
+      ],
+      "/music/": [
+        {
+          text: "音乐",
+          items: [
+            { text: "专栏总览", link: "/music/" },
+            { text: "知识地图", link: "/music/roadmap" },
+          ],
+        },
+        {
+          text: "学习主线",
+          items: [
+            { text: "1. 听见一格", link: "/music/foundations" },
+            { text: "2. 五根弦与三个音", link: "/music/guitar-chords" },
+            { text: "3. 大调与和声功能", link: "/music/major-key" },
+            { text: "4. 节拍与节奏", link: "/music/rhythm" },
+            { text: "5. 完成第一首歌", link: "/music/first-song" },
+            { text: "6. 选调、录音与反馈", link: "/music/voice-and-review" },
+          ],
+        },
+      ],
+      "/photography/": [
+        {
+          text: "摄影",
+          items: [
+            { text: "专栏总览", link: "/photography/" },
+            { text: "知识地图", link: "/photography/roadmap" },
+          ],
+        },
+        {
+          text: "0. 观看与拍摄",
+          items: [
+            { text: "学习观看", link: "/photography/seeing" },
+            { text: "完成一次拍摄", link: "/photography/capture" },
+          ],
+        },
+        {
+          text: "1. 影调与色彩",
+          items: [
+            { text: "建立影调", link: "/photography/tone" },
+            { text: "理解色彩关系", link: "/photography/color" },
+          ],
+        },
+        {
+          text: "2. 方向与参考",
+          items: [
+            { text: "两种视觉方向", link: "/photography/two-directions" },
+            { text: "参考作品拆解", link: "/photography/references" },
+          ],
+        },
+        {
+          text: "3. 实践与素材",
+          items: [
+            { text: "拍摄练习与复盘", link: "/photography/practice" },
+            { text: "素材收集闭环", link: "/photography/material-collection" },
           ],
         },
       ],

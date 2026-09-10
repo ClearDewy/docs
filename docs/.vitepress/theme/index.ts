@@ -43,6 +43,15 @@ const components = {
   ThreeScene: () => import("./components/interactive/ThreeScene.vue"),
   FlowDiagram: () => import("./components/interactive/FlowDiagram.vue"),
   WaveformDiagram: () => import("./components/interactive/WaveformDiagram.vue"),
+  MusicIntervalLab: () => import("./components/interactive/music/MusicIntervalLab.vue"),
+  MusicHarmonyLab: () => import("./components/interactive/music/MusicHarmonyLab.vue"),
+  MusicRhythmLab: () => import("./components/interactive/music/MusicRhythmLab.vue"),
+  MusicSongLab: () => import("./components/interactive/music/MusicSongLab.vue"),
+  MusicTransposeLab: () => import("./components/interactive/music/MusicTransposeLab.vue"),
+  PhotographyLab: () => import("./components/interactive/photography/PhotographyLab.vue"),
+  PhotographySeeingLesson: () => import("./components/interactive/photography/PhotographySeeingLesson.vue"),
+  PhotographyToneLesson: () => import("./components/interactive/photography/PhotographyToneLesson.vue"),
+  PhotographyReferenceBoard: () => import("./components/interactive/photography/PhotographyReferenceBoard.vue"),
   LazyDemo: () => import("./components/interactive/LazyDemo.vue"),
 };
 

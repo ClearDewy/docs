@@ -48,6 +48,20 @@ html[theme-color="ep-primary"] {
   }
 }
 
+/* Six short track links still leave room for search and utility controls. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .VPNavBarMenu .VPNavBarMenuLink,
+  .VPNavBarMenu .VPFlyout > button {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .VPNavBar .VPNavBarSearch {
+    flex-basis: 148px;
+    padding-left: 10px;
+  }
+}
+
 /* The homepage is a knowledge portal, not a profile or chronological feed. */
 .VPHome {
   position: relative;
@@ -104,7 +118,7 @@ html[theme-color="ep-primary"] {
   filter: drop-shadow(
     0 28px 44px color-mix(in srgb, var(--vp-c-brand-1) 20%, transparent)
   );
-  transform: scale(1.12);
+  transform: translate(-50%, -50%) scale(1.12);
 }
 
 .VPHome .VPHero .knowledge-orbit > img {
@@ -152,12 +166,12 @@ html[theme-color="ep-primary"] {
   transform: translateY(-5px);
 }
 
-.VPHomeFeatures .item:nth-child(-n + 4) .VPFeature {
+.VPHomeFeatures .item:nth-child(-n + 6) .VPFeature {
   border-top: 3px solid var(--vp-c-brand-2);
 }
 
 @media (min-width: 960px) {
-  .VPHomeFeatures .item.grid-4:nth-child(n + 5) {
+  .VPHomeFeatures .item.grid-6 {
     width: calc(100% / 3);
   }
 }
@@ -180,7 +194,7 @@ html[theme-color="ep-primary"] {
   }
 
   .VPHome .VPHero .knowledge-orbit {
-    transform: scale(0.94);
+    transform: translate(-50%, -50%) scale(0.94);
   }
 }
 
@@ -246,6 +260,29 @@ html[theme-color="ep-primary"] {
   border-radius: 14px;
   background: var(--vp-c-bg-soft);
   box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+}
+
+/*
+ * Guided music and photography labs need room for the teaching object and its
+ * controls in one view. Pages opt in with frontmatter pageClass, so ordinary
+ * articles keep the established reading measure and right-hand outline.
+ */
+@media (min-width: 960px) {
+  .guided-lab-page .VPDoc .container {
+    max-width: 1160px;
+  }
+
+  .guided-lab-page .VPDoc .content-container {
+    width: 100%;
+    max-width: 1040px;
+  }
+}
+
+@media (max-width: 719px) {
+  /* Teek renders this toolbar before the VitePress Layout, as its sibling. */
+  body:has(.guided-lab-page) .tk-right-bottom-button {
+    display: none;
+  }
 }
 
 .interactive-card > figcaption {

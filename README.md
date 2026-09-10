@@ -8,7 +8,7 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 
 ## 总体结构
 
-站点保留四个一级知识专栏：三个通用模块学习专栏和一个自洽的应用专栏。
+站点保留六个一级知识专栏：四个技术与研究专栏，以及音乐、摄影两个实践型艺术专栏。
 
 | 专栏 | 路径 | 核心范围 |
 | --- | --- | --- |
@@ -16,10 +16,12 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 | 系统工程 | `/systems/` | 编程语言、操作系统、网络、数据库、分布式系统、软件架构、DevOps、可靠性 |
 | 嵌入式 | `/embedded/` | 电子基础、MCU/SoC、固件、RTOS、驱动、通信协议、PCB、机器人与边缘智能 |
 | 量化研究 | `/quant/` | 市场与统计、点时数据、因子证据、样本外验证、预测、风险成本、组合、执行与生命周期 |
+| 音乐 | `/music/` | 听觉、节奏、音高与和声基础，吉他演奏、移调、曲目实践、录音与复盘 |
+| 摄影 | `/photography/` | 观看、拍摄、影调与色彩、参考拆解、作品实践、素材管理与复盘 |
 
 首页、文章清单、归档、分类、标签和关于页面属于浏览与管理入口，不是新的知识专栏。
 
-首页采用 Teek 支持的 VitePress 原生 Hero + Features 布局，延续旧站“标题、标识和入口卡片”的知识门户结构，不展示普通文章流。导航栏使用作者头像作为站点图标，Hero 右侧知识轨道以作者头像为中心。桌面端导航将四个一级专栏放在左侧，将搜索、主题和外部链接放在右侧。更换主题前应优先通过 Teek 原生配置和少量样式解决，不为单一页面效果引入第二套主题。
+首页采用 Teek 支持的 VitePress 原生 Hero + Features 布局，延续旧站“标题、标识和入口卡片”的知识门户结构，不展示普通文章流。导航栏使用作者头像作为站点图标，Hero 右侧知识轨道以作者头像为中心。桌面端导航将六个一级专栏放在左侧，将搜索、主题和外部链接放在右侧；中等宽度收紧菜单与搜索空间，手机端使用原生折叠菜单。更换主题前应优先通过 Teek 原生配置和少量样式解决，不为单一页面效果引入第二套主题。
 
 主题增强面板默认使用“双宽度可调”布局、页面宽度 90%、正文宽度 95%、Element Plus 蓝色主色、关闭颜色扩散，并开启侧边聚光灯。Teek 1.6.2 的 `ep-primary` 选择器存在上游笔误，兼容样式保留在 `custom.css`；其文章目录组件在 SPA 路由切换时还可能访问尚未挂载的 marker，空引用保护保存在 `patches/vitepress-theme-teek+1.6.2.patch` 并由 `postinstall` 自动应用。升级主题时应分别验证并决定是否删除这些兼容处理。
 
@@ -82,6 +84,36 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 
 专栏内可以按量化语境完整讲解所需的统计模型、机器学习、数据工程和平台实现；智能算法与系统工程继续维护这些技术的通用主线，跨专栏通过链接连接，不强制把一篇完整的量化文章拆散。
 
+### 音乐
+
+从可以听见和亲手演奏的最小闭环出发，不把乐理术语、软件操作和曲目清单混成一条没有验收方式的目录：
+
+```text
+听觉、节拍与音高
+  → 音程、音阶与调性
+  → 和弦与和声功能
+  → 吉他指板与节奏型
+  → 完整曲目实践
+  → 录音、反馈与复盘
+```
+
+音乐内容的成熟度描述页面是否足以学习和复查；演奏熟练度另行记录。浏览器合成音只用于听辨、对照和练习提示，不能作为本人演奏完成的证据。
+
+### 摄影
+
+从观看和拍摄判断进入完整作品循环，先建立稳定观察与反馈，再扩展器材、风格和后期分支：
+
+```text
+观看与画面意图
+  → 曝光、对焦与拍摄控制
+  → 影调与色彩
+  → 参考作品拆解
+  → 两种视觉方向与实拍练习
+  → 选片、素材管理与复盘
+```
+
+摄影内容的成熟度描述教程与参考是否可靠；本人审美和拍摄熟练度由照片、选片理由、参数记录、老师反馈和复盘持续证明。首版不使用单一自动分数代替审美判断。
+
 ## 内容归属规则
 
 一篇文章只选择一个主要归属，跨领域关系使用标签和链接表达，不复制多份正文。
@@ -90,16 +122,21 @@ Dewyx 的个人学习知识库，使用 VitePress 1.6 与 VitePress Theme Teek �
 - 通用数据库、后端、分布式系统、基础设施和工程方法归入“系统工程”。
 - 芯片、电路、固件、驱动、设备通信和实体设备归入“嵌入式”。
 - 市场机制、点时数据、因子研究、回测验证、风险成本、组合、执行和归因归入“量化研究”。
+- 听觉、乐理、乐器演奏、曲目练习、录音分析和音乐复盘归入“音乐”。
+- 观看方法、拍摄控制、构图、影调、色彩、参考拆解、照片实践和素材管理归入“摄影”。
 - 量化专栏可以包含完成论述所需的模型与工程基础；当内容主要解决可迁移的通用算法或系统问题时，仍归入对应基础专栏。
 - 端侧 AI 的模型方法归入“智能算法”，设备部署、功耗、驱动和硬件集成归入“嵌入式”，双方互相链接。
+- 音频或图像算法的通用模型原理归入“智能算法”；当文章的主要问题是听辨、演奏、观看或拍摄时，归入对应艺术专栏并链接技术背景。
 - Python、C++、Rust、Linux、Docker 等是技术标签或二级主题，不新增为一级专栏。
 - 无法确定归属时，按文章要解决的主要问题决定，而不是按使用的编程语言决定。
 
 ## 读者与学习验收
 
-默认读者具备数学与线性代数基础，不从基础算术开始。首次学习模型或硬件时，需要补齐对象来源、编程工具和完整操作路径：Python 环境归入系统工程；C/交叉编译与固定 Pico 实操归入 MCU 章节；tiny Transformer 串接 LLM 原理与项目案例。
+技术专栏默认读者具备数学与线性代数基础，不从基础算术开始。首次学习模型或硬件时，需要补齐对象来源、编程工具和完整操作路径：Python 环境归入系统工程；C/交叉编译与固定 Pico 实操归入 MCU 章节；tiny Transformer 串接 LLM 原理与项目案例。音乐与摄影按无系统训练的学习者设计，术语必须连接到可听、可见或可操作的例子。
 
-概念自测、模拟实验、独立实现、真实硬件实测分别记录。目录中的 `learnable` 不能代替真实任务验收，未连接硬件的教程不得写成已完成板级实测。页面中可运行源码优先直接引用 `examples/`，本地检查对相同实现运行基线与课程要求的变式，避免网页和测试各维护一份答案。
+概念自测、模拟实验、独立实现、真实硬件实测和个人作品实践分别记录。目录中的 `learnable` 不能代替真实任务验收，未连接硬件的教程不得写成已完成板级实测，浏览器合成音不能写成本人已会演奏，示例图片也不能写成本人已完成拍摄。音乐可使用录音、节拍或音高记录、老师反馈和结构化自评作为证据；摄影可使用原始照片、参数或编辑记录、成片、选片理由、老师反馈和结构化复盘作为证据。主观判断应标明判断者、日期和依据，不伪装成客观测量。
+
+`status` 只表示知识内容成熟度。个人技能进度写在练习记录或作品复盘中，不能因为页面是 `verified` 就推断本人已经熟练演奏、听辨、拍摄或审美判断。
 
 ## 内容组织规则
 
@@ -120,9 +157,9 @@ title: 文章标题
 date: YYYY-MM-DD
 type: lesson # overview / lesson / lab / reference / case-study / review
 status: draft # outline / draft / learnable / verified / stale
-track: ai # systems / embedded / quant / guide
+track: ai # systems / embedded / quant / music / photography / guide
 categories:
-  - 智能算法 # 或：系统工程、嵌入式、量化研究
+  - 智能算法 # 或：系统工程、嵌入式、量化研究、音乐、摄影
 tags:
   - 具体技术标签
 description: 一句话说明文章解决的问题。
@@ -131,7 +168,9 @@ description: 一句话说明文章解决的问题。
 
 `lesson`、`lab`、`review` 还必须声明 `prerequisites`、`outcomes` 和 `estimated`；完整含义与模板以规范页为准。
 
-四个专栏总览和知识地图使用 `article: false`，避免作为普通文章进入首页信息流。
+需要把图片、指板或其他主要教学对象与控件放在同一视区的课程，可在 frontmatter 使用 `pageClass: guided-lab-page` 和 `aside: false`。这只放宽该页正文并隐藏右侧目录。此类课程还应使用 `docAnalysis: { readingTime: false }`，在正文直接显示 `estimated` 对应的练习时长，避免把按字数算出的扫读时间误作学习时间。
+
+六个专栏总览和知识地图使用 `article: false`，避免作为普通文章进入首页信息流。
 
 ## 目录约定
 
@@ -150,6 +189,12 @@ docs/
 │   ├── index.md
 │   └── roadmap.md
 ├── quant/               # 量化研究
+│   ├── index.md
+│   └── roadmap.md
+├── music/               # 音乐
+│   ├── index.md
+│   └── roadmap.md
+├── photography/         # 摄影
 │   ├── index.md
 │   └── roadmap.md
 ├── guide/               # 知识库自身的使用说明
@@ -198,6 +243,12 @@ examples/                # 可在本地运行的完整示例
 | `FlowDiagram` | Vue Flow | Agent Harness、协议和分布式工作流 |
 | `WaveformDiagram` | WaveDrom | 数字逻辑与嵌入式通信时序 |
 | `ThreeScene` | Three.js + TresJS | 三维结构、机器人和空间算法 |
+| `MusicIntervalLab` / `MusicHarmonyLab` / `MusicTransposeLab` | Tone.js + Tonal | 音程、和弦听辨、调性关系与移调练习 |
+| `MusicRhythmLab` | Tone.js | 节拍、节奏型与速度练习 |
+| `MusicSongLab` | Tone.js + Tonal | 在同一时间线上对齐旋律、和弦与拍点 |
+| `PhotographyLab` | Vue | 曝光与影调的可解释练习，不输出审美分数 |
+| `PhotographySeeingLesson` / `PhotographyToneLesson` | Vue + Canvas | 带区域标注的观看引导，以及曝光与暗部的单变量对照 |
+| `PhotographyReferenceBoard` | img-comparison-slider | 参考图与处理方向的受控对照 |
 
 Markdown 数学公式使用 VitePress 的 MathJax 支持。组件实例和效果集中在 `docs/guide/interactive-components.md`。
 
@@ -228,7 +279,7 @@ Markdown 数学公式使用 VitePress 的 MathJax 支持。组件实例和效果
 
 路由保持以下约束：
 
-- 一级专栏使用 VitePress 原生目录地址 `/ai/`、`/systems/`、`/embedded/`、`/quant/`，链接保留末尾斜杠。
+- 一级专栏使用 VitePress 原生目录地址 `/ai/`、`/systems/`、`/embedded/`、`/quant/`、`/music/`、`/photography/`，链接保留末尾斜杠。
 - 不在 frontmatter 中增加与文件原生路径等价的 `permalink`。
 - `vitePlugins.permalink` 与 `vitePlugins.sidebar` 保持关闭；前者会在 SPA 路由钩子中产生嵌套跳转，后者会覆盖手写侧边栏。
 - 专栏侧边栏只在 `docs/.vitepress/config.ts` 维护，避免自动配置与手写配置并存。
@@ -253,6 +304,9 @@ Python 示例统一使用根目录的 `pyproject.toml`、`uv.lock` 和 `.venv`�
 
 ```bash
 npm run check:content  # 文章结构与内容约定
+npm run check:site     # 路由、全局组件、内部链接与学习顺序
+npm run check:music    # 音乐事实层、音频状态和练习逻辑
+npm run check:photography # 摄影参数、素材归属和练习逻辑
 npm run check:python  # 标准库示例，需要 uv
 npm run check:learning # 课程变式，需要 uv
 npm run check:trees   # 根目录 trees 依赖组

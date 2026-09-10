@@ -3,15 +3,15 @@ layout: home
 article: false
 sidebar: false
 titleTemplate: false
-description: 围绕智能算法、系统工程、嵌入式与量化研究持续构建的个人学习知识库。
+description: 围绕智能算法、系统工程、嵌入式、量化研究、音乐与摄影持续构建的个人学习知识库。
 
 hero:
   name: Dewyx Docs
   text: 把知识连接成系统
-  tagline: 从原理到实现，从实验到系统。持续整理智能算法、系统工程、嵌入式与量化研究的学习地图。
+  tagline: 从原理到实现，从练习到作品。持续整理技术、研究、音乐与摄影的学习地图。
   image:
     src: /knowledge-orbit.svg
-    alt: 智能算法、系统工程、嵌入式与量化研究组成的知识轨道
+    alt: 智能算法、系统工程、嵌入式、量化研究、音乐与摄影组成的知识轨道
   actions:
     - theme: brand
       text: 进入知识地图
@@ -40,6 +40,16 @@ features:
     title: 量化研究
     details: 市场与统计、点时数据、因子证据、样本外验证、风险成本、组合与执行。
     link: /quant/
+    linkText: 打开专栏
+  - icon: ♫
+    title: 音乐
+    details: 从节奏、音高与和声基础，到吉他、曲目实践、录音反馈与复盘。
+    link: /music/
+    linkText: 打开专栏
+  - icon: ◐
+    title: 摄影
+    details: 从观看、拍摄控制和影调色彩，到参考拆解、作品实践与素材复盘。
+    link: /photography/
     linkText: 打开专栏
   - icon: 🗺️
     title: 系统性知识地图

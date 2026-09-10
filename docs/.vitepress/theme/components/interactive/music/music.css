@@ -1,0 +1,34 @@
+.music-lab { margin: 24px 0; padding: clamp(14px, 3vw, 24px); border: 1px solid var(--vp-c-divider); border-radius: 16px; background: var(--vp-c-bg-soft); color: var(--vp-c-text-1); }
+.music-lab h3 { margin-top: 0; }
+.music-lab .music-eyebrow { margin: 0 0 6px; font-size: 12px; letter-spacing: .08em; color: var(--vp-c-text-2); }
+.music-lab button, .music-lab select, .music-lab input[type=number], .music-lab textarea { color: var(--vp-c-text-1); background: var(--vp-c-bg); border: 1px solid var(--vp-c-divider); border-radius: 7px; padding: 8px 11px; font: inherit; min-height: 44px; }
+.music-lab button { cursor: pointer; }
+.music-lab button:hover { border-color: var(--vp-c-brand-1); }
+.music-lab button:focus-visible, .music-lab input:focus-visible, .music-lab select:focus-visible, .music-lab textarea:focus-visible, .music-lab summary:focus-visible { outline: 3px solid var(--vp-c-brand-1); outline-offset: 3px; }
+.music-lab button[aria-pressed=true], .music-lab .music-primary { background: var(--vp-c-brand-1); color: var(--vp-c-white); border-color: var(--vp-c-brand-1); }
+.music-lab .music-actions, .music-lab .music-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; align-items: center; }
+.music-lab label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.music-lab .music-result { padding: 14px; border-left: 3px solid var(--vp-c-brand-1); background: var(--vp-c-bg); border-radius: 4px; margin: 16px 0; }
+.music-lab .music-result p { margin: 3px 0; }
+.music-lab .music-note { font-size: 13px; color: var(--vp-c-text-2); }
+.music-lab .music-state { border-top: 1px solid var(--vp-c-divider); margin-top: 20px; padding-top: 12px; font-size: 14px; }
+.music-lab .music-state summary { cursor: pointer; }
+.music-lab .music-state label { display: block; margin: 12px 0; }
+.music-lab textarea { display: block; width: 100%; box-sizing: border-box; }
+.music-lab input[type=range] { accent-color: var(--vp-c-brand-1); min-height: 44px; max-width: 100%; }
+.music-lab .music-scroll { overflow-x: auto; }
+.music-lab table { margin: 12px 0; }
+.music-lab .music-error { color: var(--vp-c-danger-1); }
+@media (prefers-reduced-motion: reduce) { .music-lab *, .music-lab *::before { transition: none !important; animation: none !important; } }
+
+.music-guided .music-step-strip { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
+.music-guided .music-step-strip button { flex: 1; font-size: 13px; padding: 9px 8px; min-width: 110px; }
+.music-guided .music-instruction { font-size: 16px; line-height: 1.8; }
+.music-question { margin: 20px 0 12px; padding: 12px; border: 1px solid var(--vp-c-divider); border-radius: 8px; }
+.music-question legend { font-weight: 600; padding: 0 5px; }
+.music-question button { margin: 4px 8px 4px 0; }
+.music-lesson-footer { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; border-top: 1px solid var(--vp-c-divider); padding-top: 16px; margin-top: 18px; }
+.music-lab button:disabled { opacity: .45; cursor: default; }
+.music-lab .music-primary { font-weight: 650; }
+
+.music-guided .music-step-strip button[aria-pressed=true] { color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); border-color: var(--vp-c-brand-1); }

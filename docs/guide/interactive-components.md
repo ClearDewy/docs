@@ -1,8 +1,17 @@
 ---
 title: 交互式知识组件
+date: 2026-09-02
 article: false
-updated: 2026-09-05
-description: 博客内置的数学公式、图表、模型计算动画、状态图、波形和三维可视化能力及代码架构。
+updated: 2026-09-09
+type: reference
+status: draft
+track: guide
+categories:
+  - 关于本站
+tags:
+  - 交互组件
+  - 可视化
+description: 博客内置的数学公式、图表、模型计算动画、音乐练习、摄影对照和其他可视化能力及代码架构。
 ---
 
 # 交互式知识组件
@@ -22,6 +31,8 @@ description: 博客内置的数学公式、图表、模型计算动画、状态�
 | 状态图 | Vue Flow | Agent、分布式系统和工作流 |
 | 数字波形 | WaveDrom | UART、SPI、I²C 和数字逻辑 |
 | 三维场景 | Three.js + TresJS | 机器人、坐标系和空间算法 |
+| 音乐听辨 | Tone.js + Tonal | 音高、和弦、节奏和移调练习 |
+| 图片对照与引导观察 | img-comparison-slider + Canvas | 摄影版本比较、区域标注、影调观察和参考复盘 |
 
 ## 数学公式
 
@@ -282,6 +293,56 @@ Canvas 不是“更高级”的默认选项。选择依据是认知任务、更�
 <LazyDemo title="TresJS 三维场景">
   <ClientOnly>
     <ThreeScene />
+  </ClientOnly>
+</LazyDemo>
+
+## 音乐听辨与练习
+
+Tone.js 只在用户点击试听后启动浏览器音频，Tonal 提供音名、和弦与移调的确定性事实层。合成音用于听辨和练习提示，不代表本人已经完成真实演奏。
+
+<LazyDemo title="音高与音程听辨">
+  <ClientOnly>
+    <MusicIntervalLab />
+  </ClientOnly>
+</LazyDemo>
+
+<LazyDemo title="和弦、音程与吉他指板">
+  <ClientOnly>
+    <MusicHarmonyLab />
+  </ClientOnly>
+</LazyDemo>
+
+<LazyDemo title="节拍与节奏型">
+  <ClientOnly>
+    <MusicRhythmLab />
+  </ClientOnly>
+</LazyDemo>
+
+<LazyDemo title="旋律、和弦与拍点对齐">
+  <ClientOnly>
+    <MusicSongLab />
+  </ClientOnly>
+</LazyDemo>
+
+<LazyDemo title="旋律移调与练习音域">
+  <ClientOnly>
+    <MusicTransposeLab />
+  </ClientOnly>
+</LazyDemo>
+
+## 摄影影调与参考图板
+
+摄影实验使用浏览器 Canvas 生成可复现的处理结果，并用 img-comparison-slider 做原图与版本对照。直方图只描述像素分布，不为构图、情绪或审美质量自动评分。
+
+<LazyDemo title="影调、色彩与双版本比较">
+  <ClientOnly>
+    <PhotographyLab />
+  </ClientOnly>
+</LazyDemo>
+
+<LazyDemo title="参考来源与实践想法图板">
+  <ClientOnly>
+    <PhotographyReferenceBoard />
   </ClientOnly>
 </LazyDemo>
 
